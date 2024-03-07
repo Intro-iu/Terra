@@ -16,18 +16,18 @@ class Human:
         self.life = (Father.life + Mother.life) / 2
         self.height_B = (0.4 * Father.height_B + 0.6 * Mother.height_B) + rd.uniform(-0.2, 0.05)*(Father.height_B + Mother.height_B)
         self.weight_B = (0.6 * Father.weight_B + 0.4 * Mother.weight_B) + rd.uniform(-0.2, 0.05)*(Father.weight_B + Mother.weight_B)
-        self.movement_B = (0.4 * Father.movement_B + 0.6 * Mother.movement_B) + rd.uniform(-0.15, 0.15)*(Father.movement_B + Mother.movement_B)
+        self.phy_B = (0.4 * Father.phy_B + 0.6 * Mother.phy_B) + rd.uniform(-0.15, 0.15)*(Father.phy_B + Mother.phy_B)
 
         # 初始属性
         self.height = 0
         self.weight = 0
-        self.movement = 1
+        self.phy = 1.0
 
     def grow(self):
         self.age += 1/30
         self.height += self.height_B / self.life + self.hug + rd.uniform(-0.05, 0.1)
         self.weight += self.weight_B / self.life + self.hug + rd.uniform(-0.05, 0.1)
-        self.movement += self.movement_B / self.life + self.hug + rd.uniform(-0.05, 0.1)
+        self.phy += self.phy_B / self.life + self.hug + rd.uniform(-0.05, 0.1)
 
     def feed(self, person, value):
         # 投喂他人
