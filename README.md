@@ -1,6 +1,9 @@
 # About Terra
 
-## 基因
+## 人类
+
+### 基因
+
 - 寿命：life
 - 性别：gender
 - 基础身高：height
