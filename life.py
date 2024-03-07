@@ -71,6 +71,29 @@ def reproduce(Father, Mother):
     id += 1
     return Human(id, Father, Mother)
 
+Adam = Human(0)
+Eva = Human(1)
+
+Adam.gender = 1
+Adam.life = 100
+Adam.height_B = 1.8
+Adam.weight_B = 70
+Adam.phy_B = 0.8
+Adam.age = 22
+Adam.height = 1.8
+Adam.weight = 70
+Adam.phy = 0.8
+
+Eva.gender = 0
+Eva.life = 100
+Eva.height_B = 1.6
+Eva.weight_B = 50
+Eva.phy_B = 0.6
+Eva.age = 22
+Eva.height = 1.6
+Eva.weight = 50
+Eva.phy = 0.6
+
 class berry:
     def __init__(self):
         self.isPickable = True
