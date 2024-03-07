@@ -12,11 +12,13 @@ class Human:
         self.Father = Father
         self.Mother = Mother
         
+        # 基因遗传
         self.life = (Father.life + Mother.life) / 2
         self.height_B = (0.4 * Father.height_B + 0.6 * Mother.height_B) + rd.uniform(-0.2, 0.05)*(Father.height_B + Mother.height_B)
         self.weight_B = (0.6 * Father.weight_B + 0.4 * Mother.weight_B) + rd.uniform(-0.2, 0.05)*(Father.weight_B + Mother.weight_B)
         self.movement_B = (0.4 * Father.movement_B + 0.6 * Mother.movement_B) + rd.uniform(-0.15, 0.15)*(Father.movement_B + Mother.movement_B)
 
+        # 初始属性
         self.height = 0
         self.weight = 0
         self.movement = 1
