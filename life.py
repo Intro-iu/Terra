@@ -7,9 +7,9 @@ class Human:
         self.hug = 0
         self.height = 0
         self.weight = 0
-        self.phy = 0
+        self.strength = 0
         self.sonNum = 0
-        
+
         self.id = id
         self.hug = 1.5
         self.gender = rd.randint(0, 1)
@@ -22,7 +22,7 @@ class Human:
             self.life = (Father.life + Mother.life) / 2
             self.height_B = (0.4 * Father.height_B + 0.6 * Mother.height_B) + rd.uniform(-0.2, 0.05)*(Father.height_B + Mother.height_B)
             self.weight_B = (0.6 * Father.weight_B + 0.4 * Mother.weight_B) + rd.uniform(-0.2, 0.05)*(Father.weight_B + Mother.weight_B)
-            self.phy_B = (0.4 * Father.phy_B + 0.6 * Mother.phy_B) + rd.uniform(-0.15, 0.15)*(Father.phy_B + Mother.phy_B)
+            self.strength_B = (0.4 * Father.strength_B + 0.6 * Mother.strength_B) + rd.uniform(-0.15, 0.15)*(Father.strength_B + Mother.strength_B)
 
             # 祖先递归somNum++
             An0 = Father
@@ -42,18 +42,18 @@ class Human:
         if self.age <= 22:
             self.height += self.height_B / self.life + self.hug / (self.hug+1) * rd.uniform(0.1, 0.125)
         self.weight += self.weight_B / self.life + self.hug / (self.hug+1) * rd.uniform(0.1, 0.125)
-        self.phy += self.phy_B / self.life + self.hug / (self.hug+1) * rd.uniform(-0.05, 0.1)
+        self.strength += self.strength_B / self.life + self.hug / (self.hug+1) * rd.uniform(-0.05, 0.1)
 
     # 采摘并进食
     def getFood(self, target):
         if target.isPickable:
             self.hug += target.hugVal
-            self.phy -= target.diff
+            self.strength -= target.diff
             target.isPickable = False
 
     # 投喂他人
     def feed(self, person, value):
-        self.phy -= value * 0.1
+        self.strength -= value * 0.1
         self.hug -= value * 1.05
         person.hug += value
 
@@ -77,21 +77,21 @@ Adam.gender = 1
 Adam.life = 100
 Adam.height_B = 1.8
 Adam.weight_B = 70
-Adam.phy_B = 0.8
+Adam.strength_B = 0.8
 Adam.age = 22
 Adam.height = 1.8
 Adam.weight = 70
-Adam.phy = 0.8
+Adam.strength = 0.8
 
 Eva.gender = 0
 Eva.life = 100
 Eva.height_B = 1.6
 Eva.weight_B = 50
-Eva.phy_B = 0.6
+Eva.strength_B = 0.6
 Eva.age = 22
 Eva.height = 1.6
 Eva.weight = 50
-Eva.phy = 0.6
+Eva.strength = 0.6
 
 class berry:
     def __init__(self):
