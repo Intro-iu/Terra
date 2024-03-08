@@ -32,16 +32,7 @@ class Human:
             self.strength_B = (0.4 * Father.strength_B + 0.6 * Mother.strength_B) + rd.uniform(-0.15, 0.15)*(Father.strength_B + Mother.strength_B)
 
             # 祖先递归sonNum++
-            An0 = Father
-            An1 = Mother
-
-            while An0.id != 0:
-                An0.sonNum += 1
-                An0 = An0.Father
-
-            while An1.id != 0:
-                An1.sonNum += 1
-                An1 = An1.Mother
+            # ToDO
 
     # 人类成长
     def grow(self):
@@ -96,7 +87,9 @@ Eva.weight = 50
 Eva.strength = 0.6
 
 class berry:
-    def __init__(self):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
         self.isPickable = True
         self.hugVal = 1
         self.height = rd.uniform(1.0, 1.3)

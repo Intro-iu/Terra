@@ -7,15 +7,15 @@ class World:
         self.plant = []
         
 
-    def spawn(self, human):
-        self.human.append(human)
-    
-    def spawn(self, plant):
-        self.plant.append(plant)
+    def spawn(self, object):
+        if object.__class__.__name__ == 'Human':
+            self.human.append(object)
+        if object.__class__.__name__ == 'berry':
+            self.plant.append(object)
 
     # 人类繁衍
     def reproduce(self, Father, Mother):
-        self.spawn(Human(self, Father, Mother))
+        self.spawn(Human(self.human.__len__(), time = self.time, Father=Father, Mother=Mother))
 
     def timePass(self):
         self.time += 1
