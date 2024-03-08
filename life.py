@@ -1,9 +1,14 @@
 import random as rd
 
 class Human:
-    def __init__(self, id, Father = None, Mother = None):
+    def __init__(self, id, time, x = None, y = None, Father = None, Mother = None):
+        if x != None and y != None:
+            self.x = x
+            self.y = y
         # 初始属性
+        self.id = id
         self.age = 0
+        self.birthday = time
         self.hug = 0
         self.height = 0
         self.weight = 0
@@ -17,6 +22,8 @@ class Human:
         self.Mother = Mother
         
         if Father != None and Mother != None:
+            self.x = Mother.x + rd.uniform(-0.1, 0.1)
+            self.y = Mother.y + rd.uniform(-0.1, 0.1)
 
             # 基因遗传
             self.life = (Father.life + Mother.life) / 2
@@ -24,7 +31,7 @@ class Human:
             self.weight_B = (0.6 * Father.weight_B + 0.4 * Mother.weight_B) + rd.uniform(-0.2, 0.05)*(Father.weight_B + Mother.weight_B)
             self.strength_B = (0.4 * Father.strength_B + 0.6 * Mother.strength_B) + rd.uniform(-0.15, 0.15)*(Father.strength_B + Mother.strength_B)
 
-            # 祖先递归somNum++
+            # 祖先递归sonNum++
             An0 = Father
             An1 = Mother
 
@@ -40,7 +47,7 @@ class Human:
     def grow(self):
         self.age += 1/30
         if self.age <= 22:
-            self.height += self.height_B / self.life + self.hug / (self.hug+1) * rd.uniform(0.1, 0.125)
+            self.height += self.height_B / 22 / 30 + self.hug / (self.hug+1) * rd.uniform(0.005, 0.010) * self.height_B
         self.weight += self.weight_B / self.life + self.hug / (self.hug+1) * rd.uniform(0.1, 0.125)
         self.strength += self.strength_B / self.life + self.hug / (self.hug+1) * rd.uniform(-0.05, 0.1)
 
@@ -63,15 +70,10 @@ class Human:
     # 人生得分
     def score(self):
         return self.age + self.sonNum
-    
-# 人类繁衍
-def reproduce(Father, Mother):
-    global id
-    id += 1
-    return Human(id, Father, Mother)
 
-Adam = Human(0)
-Eva = Human(1)
+
+Adam = Human(id = 1, time = 0, x = 0, y = 0)
+Eva = Human(id = 0, time = 0, x = 0, y = 0)
 
 Adam.gender = 1
 Adam.life = 100
