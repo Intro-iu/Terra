@@ -1,7 +1,6 @@
 from life import *
 
 humanNum = 2
-
 HUMAN = [Adam, Eva]
 
 for day in range(10):

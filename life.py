@@ -1,16 +1,15 @@
 import random as rd
 
 class Human:
-    # 初始属性
-    age = 0
-    hug = 0
-    height = 0
-    weight = 0
-    phy = 0
-    sonNum = 0
-
-
     def __init__(self, id, Father = None, Mother = None):
+        # 初始属性
+        self.age = 0
+        self.hug = 0
+        self.height = 0
+        self.weight = 0
+        self.phy = 0
+        self.sonNum = 0
+        
         self.id = id
         self.hug = 1.5
         self.gender = rd.randint(0, 1)
