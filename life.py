@@ -9,14 +9,19 @@ class Human:
         self.id = id
         self.age = 0
         self.birthday = time
-        self.hug = 0
+        self.health = 5
+        self.hunger = 3
         self.height = 0
         self.weight = 0
         self.strength = 0
+
+        self.health_Cur = 5
+        self.hunger_Cur = 3
+        self.strength_Cur = 0
         self.sonNum = 0
 
         self.id = id
-        self.hug = 1.5
+        self.hunger = 1.5
         self.gender = rd.randint(0, 1)
         self.Father = Father
         self.Mother = Mother
@@ -38,24 +43,30 @@ class Human:
     def grow(self):
         self.age += 1/30
         if self.age <= 22:
-            self.height += self.height_B / 22 / 30 + self.hug / (self.hug+1) * rd.uniform(0.005, 0.010) * self.height_B
-        self.weight += self.weight_B / self.life + self.hug / (self.hug+1) * rd.uniform(0.1, 0.125)
-        self.strength += self.strength_B / self.life + self.hug / (self.hug+1) * rd.uniform(-0.05, 0.1)
+            self.height += self.height_B / 22 / 30 + self.hunger / (self.hunger+1) * rd.uniform(0.005, 0.010) * self.height_B
+        self.weight += self.weight_B / 22 / 30 + self.hunger / (self.hunger+1) * rd.uniform(0.1, 0.125)
+        self.hunger = 0.1 * self.weight
+        self.strength += self.strength_B / 22 /30
+
+    def rest(self):
+        if (self.strength_Cur < self.strength):
+            self.strength_Cur += 0.5
 
     # 采摘并进食
     def getFood(self, target):
-        if target.isPickable:
-            self.hug += target.hugVal
+        if target.isPickable and self.strength > target.diff:
+            self.health_Cur += (self.health_Cur < self.health) * target.healthRecoveryAmount
+            self.hunger_Cur += (self.hunger_Cur < self.hunger) * target.hungerRecoveryAmount
             self.strength -= target.diff
             target.isPickable = False
 
     # 投喂他人
-    def feed(self, person, value):
-        self.strength -= value * 0.1
-        self.hug -= value * 1.05
-        person.hug += value
+    # ToDO
 
+    # 人类行为决策
     def target(self): 
+        # actions = [self.getFood, self.feedOther]
+        # objects = self.getObject(r=1)
         return
 
     # 人生得分
@@ -91,7 +102,8 @@ class Berry:
         self.x = x
         self.y = y
         self.isPickable = True
-        self.hugVal = 1
+        self.healthRecoveryAmount = 0.3
+        self.hungerRecoveryAmount = 0.5
         self.height = rd.uniform(1.0, 1.3)
         self.refTime = 0
         self.diff = 0.5
