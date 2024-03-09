@@ -22,12 +22,12 @@
 - 年龄：`age` 年龄到达寿命的20%时为成年
 - 身高：`height`
 - 体重：`weight`
-- 耐力上限：`strength`
-- 血条上限：`health`
-- 饥饿值上限：`hunger`
-- 耐力：`strength_Cur` 消耗完则原地不动，次日恢复
-- 血条：`health_Cur`
-- 饥饿值：`hunger_Cur`
+- 耐力上限：`maxStrength`
+- 血条上限：`maxHealth`
+- 饥饿值上限：`maxHunger`
+- 耐力：`strength` 消耗完则原地不动，次日恢复
+- 血条：`health`
+- 饥饿值：`hunger`
 
 ### 行为
 

@@ -9,24 +9,23 @@ class Human:
         self.id = id
         self.age = 0
         self.birthday = time
-        self.health = 5
-        self.hunger = 3
+        self.maxHealth = 5
+        self.maxHunger = 3
         self.height = 0
         self.weight = 0
-        self.strength = 0
+        self.maxStrength = 0
 
-        self.health_Cur = 5
-        self.hunger_Cur = 3
-        self.strength_Cur = 0
+        self.health = 5
+        self.hunger = 3
+        self.strength = 0
         self.sonNum = 0
 
-        self.id = id
-        self.hunger = 1.5
-        self.gender = rd.randint(0, 1)
-        self.Father = Father
-        self.Mother = Mother
         
         if Father != None and Mother != None:
+            self.id = id
+            self.gender = rd.randint(0, 1)
+            self.Father = Father
+            self.Mother = Mother
             self.x = Mother.x + rd.uniform(-0.1, 0.1)
             self.y = Mother.y + rd.uniform(-0.1, 0.1)
 
@@ -41,22 +40,22 @@ class Human:
 
     # 人类成长
     def grow(self):
-        self.age += 1/30
+        self.age += 1/25
         if self.age <= 22:
-            self.height += self.height_B / 22 / 30 + self.hunger / (self.hunger+1) * rd.uniform(0.005, 0.010) * self.height_B
-        self.weight += self.weight_B / 22 / 30 + self.hunger / (self.hunger+1) * rd.uniform(0.1, 0.125)
-        self.hunger = 0.1 * self.weight
-        self.strength += self.strength_B / 22 /30
+            self.height += self.height_B / 22 / 30 + self.maxHunger / (self.maxHunger+1) * rd.uniform(0.005, 0.010) * self.height_B
+        self.weight += self.weight_B / 22 / 30 + self.maxHunger / (self.maxHunger+1) * rd.uniform(0.1, 0.125)
+        self.maxHunger = 0.1 * self.weight
+        self.maxStrength += self.strength_B / 22 / 30
 
     def rest(self):
-        if (self.strength_Cur < self.strength):
-            self.strength_Cur += 0.5
+        if (self.strength < self.maxStrength):
+            self.strength += 0.5
 
     # 采摘并进食
     def getFood(self, target):
-        if target.isPickable and self.strength > target.diff:
-            self.health_Cur += (self.health_Cur < self.health) * target.healthRecoveryAmount
-            self.hunger_Cur += (self.hunger_Cur < self.hunger) * target.hungerRecoveryAmount
+        if target.isPickable and self.maxStrength > target.diff:
+            self.health += (self.health < self.maxHealth) * target.healthRecoveryAmount
+            self.hunger += (self.hunger < self.maxHunger) * target.hungerRecoveryAmount
             self.strength -= target.diff
             target.isPickable = False
 
@@ -74,18 +73,8 @@ class Human:
         return self.age + self.sonNum
 
 
-Adam = Human(id = 1, time = 0, x = 0, y = 0)
 Eva = Human(id = 0, time = 0, x = 0, y = 0)
-
-Adam.gender = 1
-Adam.life = 100
-Adam.height_B = 1.8
-Adam.weight_B = 70
-Adam.strength_B = 0.8
-Adam.age = 22
-Adam.height = 1.8
-Adam.weight = 70
-Adam.strength = 0.8
+Adam = Human(id = 1, time = 0, x = 0, y = 0)
 
 Eva.gender = 0
 Eva.life = 100
@@ -95,10 +84,23 @@ Eva.strength_B = 0.6
 Eva.age = 22
 Eva.height = 1.6
 Eva.weight = 50
-Eva.strength = 0.6
+Eva.maxStrength = 0.8
+Eva.strength = 0.8
+
+Adam.gender = 1
+Adam.life = 100
+Adam.height_B = 1.8
+Adam.weight_B = 70
+Adam.strength_B = 0.8
+Adam.age = 22
+Adam.height = 1.8
+Adam.weight = 70
+Adam.maxStrength = 1
+Adam.strength = 1
 
 class Berry:
-    def __init__(self, x, y):
+    def __init__(self, id, x, y):
+        self.id = id
         self.x = x
         self.y = y
         self.isPickable = True
