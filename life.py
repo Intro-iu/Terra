@@ -55,7 +55,7 @@ class Human:
         self.hug -= value * 1.05
         person.hug += value
 
-    def target(self):
+    def target(self): 
         return
 
     # 人生得分
@@ -86,7 +86,7 @@ Eva.height = 1.6
 Eva.weight = 50
 Eva.strength = 0.6
 
-class berry:
+class Berry:
     def __init__(self, x, y):
         self.x = x
         self.y = y
