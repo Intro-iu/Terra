@@ -39,6 +39,7 @@
 
 ## 植物
 
-- 饥饿回复值：`hugVal`
+- 血量回复值：`healthRecoveryAmount`
+- 饥饿回复值：`hungerRecoveryAmount`
 - 刷新周期：`refTime`
 - 采摘难度：`diff` 即采摘所需消耗的耐力
