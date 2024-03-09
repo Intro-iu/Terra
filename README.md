@@ -22,11 +22,12 @@
 - 年龄：`age` 年龄到达寿命的20%时为成年
 - 身高：`height`
 - 体重：`weight`
-- 是否饥饿：`isHug` 用于判断能否增长耐力值
-- 耐力：`strength` 消耗完则原地不动，次日恢复
-- 速度：`speed`
-- 血条：`HP`
-- 饥饿值：`hug`
+- 耐力上限：`strength`
+- 血条上限：`health`
+- 饥饿值上限：`hunger`
+- 耐力：`strength_Cur` 消耗完则原地不动，次日恢复
+- 血条：`health_Cur`
+- 饥饿值：`hunger_Cur`
 
 ### 行为
 
