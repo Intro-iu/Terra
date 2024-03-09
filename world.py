@@ -5,23 +5,21 @@ class World:
         self.time = 0
         self.human = [Adam, Eva]
         self.plant = []
-        self.speDic = { 
-            'Human': self.human, 
-            'Berry': self.plant,
-            'Tree' : self.plant,
-        }
         
 
     def spawn(self, object):
-        self.speDic[object.__class__.__name__].append(object)
+        if object.__class__.__name__ == 'Human':
+            self.human.append(object)
+        if object.__class__.__name__ == 'berry':
+            self.plant.append(object)
 
     # 人类繁衍
     def reproduce(self, Father, Mother):
-        self.spawn(Human(self.human.__len__(), time = self.time, Father=Father, Mother=Mother))
+        self.spawn(Human(len(self.species['Human']), time = self.time, Father=Father, Mother=Mother))
 
     def timePass(self):
         self.time += 1
-        for human in self.human:
+        for human in self.species['Human']:
             human.grow()
             human.target()  # AI决策人类行动
             human.hug -= 0.1
@@ -30,9 +28,9 @@ class World:
                 human.age += 1
 
             if human.hug <= 0:
-                self.human.remove(human)
+                self.species['Human'].remove(human)
                 print('Human', human.id, 'died.', 'Score:', human.score())
-                if self.human.__len__() == 0:
+                if len(self.species['Human']) == 0:
                     print('The last human died.')
                     break
             else:
