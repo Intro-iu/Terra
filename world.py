@@ -5,13 +5,15 @@ class World:
         self.time = 0
         self.human = [Adam, Eva]
         self.plant = []
+        self.speDic = { 
+            'Human': self.human, 
+            'Berry': self.plant,
+            'Tree' : self.plant,
+        }
         
 
     def spawn(self, object):
-        if object.__class__.__name__ == 'Human':
-            self.human.append(object)
-        if object.__class__.__name__ == 'berry':
-            self.plant.append(object)
+        self.speDic[object.__class__.__name__].append(object)
 
     # 人类繁衍
     def reproduce(self, Father, Mother):
