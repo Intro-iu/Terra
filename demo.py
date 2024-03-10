@@ -22,14 +22,11 @@ Adam.weight = 70
 Adam.maxStrength = 1
 Adam.strength = 1
 
-world = World()
+world = World(daysInYear=5)
 world.spawn(Berry(0, 1, 1))
 world.spawn(Eva)
 world.spawn(Adam)
 
 world.reproduce(world.species['Human'][0], world.species['Human'][1])
-
-print(world.species['Berry'])
-print(world.species['Human'])
 
 world.run()

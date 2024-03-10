@@ -13,17 +13,18 @@ class Human:
         self.weight = 0
         self.health = 5
         self.hunger = 3
-        self.strength = 0
+        self.strength = 0.0
 
         self.maxHeight = 1.6
         self.maxWeight = 50
         self.maxHealth = 5
         self.maxHunger = 3
-        self.maxStrength = 0
+        self.maxStrength = 0.0
 
+        self.hungerDecreaseRate = 0.1
+        self.strengthRecoveryRate = 0.5
         self.sonNum = 0
 
-        
         if Father != None and Mother != None:
             self.id = id
             self.gender = rd.randint(0, 1)
@@ -41,15 +42,15 @@ class Human:
 
     # 人类成长
     def grow(self):
-        self.age += 1/25
+        self.age += 1
+        self.hunger = max(0, self.hunger - self.hungerDecreaseRate)
         if self.age <= 22:
             self.height += self.maxHeight / 22 / 30 + self.maxHunger / (self.maxHunger+1) * rd.uniform(0.005, 0.010) * self.maxHeight
         self.weight += self.maxWeight / 22 / 30 + self.maxHunger / (self.maxHunger+1) * rd.uniform(0.1, 0.125)
         self.maxHunger = 0.1 * self.weight
 
     def rest(self):
-        if (self.strength < self.maxStrength):
-            self.strength += 0.5
+        self.strength = max(self.maxStrength, self.strength + self.strengthRecoveryRate)
 
     # 采摘并进食
     def getFood(self, target):
